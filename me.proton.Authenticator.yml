@@ -21,6 +21,7 @@ modules:
     build-commands:
       - bsdtar -Oxf ProtonAuthenticator.deb data.tar.gz | bsdtar -xf -
       - install -Dm755 usr/bin/proton-authenticator /app/bin/proton-authenticator
+      - install -Dm644 icon.svg "${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg"
       - install -Dm644 usr/share/icons/hicolor/256x256@2/apps/proton-authenticator.png "${FLATPAK_DEST}/share/icons/hicolor/256x256@2/apps/${FLATPAK_ID}.png"
       - install -Dm644 usr/share/icons/hicolor/128x128/apps/proton-authenticator.png "${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png"
       - install -Dm644 usr/share/icons/hicolor/32x32/apps/proton-authenticator.png "${FLATPAK_DEST}/share/icons/hicolor/32x32/apps/${FLATPAK_ID}.png"
@@ -41,6 +42,11 @@ modules:
           version-query: .Releases[0].Version
           url-query: .Releases[0].File[0].Url
           is-main-source: true
+
+      - type: file
+        dest-filename: icon.svg
+        url: https://github.com/ProtonMail/WebClients/blob/53cb984ccce8500def03042feea4aebe0ecf7064/packages/components/containers/account/authenticatorPromotion/assets/authenticator-logo.svg
+        sha256: 8bb208df9bd0cbfa5f81a623daffa14ff871836f3281e6748ef5d69a6cfbf5d2
 
       - type: file
         path: me.proton.Authenticator.metainfo.xml
